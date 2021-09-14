@@ -4,7 +4,6 @@ const splited = input.shift().trim().split(" ");
 const node = splited[0];
 const vertex = splited[1];
 const begin = splited[2];
-
 let numbers = [];
 
 for (let i = 0; i < parseInt(vertex); i++) {
@@ -60,8 +59,13 @@ function bfs(begin) {
   }
   else if (bfsQueue.length) {
     const shift = bfsQueue.shift();
-    const sortedArray = copiedBfsGraph[shift].sort(function (a, b) { return a - b });
-
+    let sortedArray;
+    if (copiedBfsGraph[shift]) {
+      sortedArray = copiedBfsGraph[shift].sort(function (a, b) { return a - b });
+    }
+    else {
+      sortedArray = [];
+    }
     while (sortedArray.length) {
       const shifted = sortedArray.shift();
 
